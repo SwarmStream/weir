@@ -1,34 +1,11 @@
 {
   "action": "launch.open",
   "input": {
-    "objective": "Weir v2: apply the swarm audit's fixes to the deployed Weir contract and deploy it as a NEW contract on Robinhood Chain (chainId 4663). Contracts only: NO launch token, NO pool, NO distributor, NO website. The workspace is the Weir contracts repository at the given commit (Foundry, solc 0.8.26, cancun, bytecode_hash \"none\", optimizer 200). Source: src/Weir.sol plus OracleAttestation.sol, libraries/OracleText.sol, interfaces/IIntake.sol. Keep everything not listed below unchanged, including the constructor, the economics, the state machine and every other behaviour. Do not claim an independent audit.\n\nDEPLOY. One contract, Weir, deployed with these flat constructor arguments EXACTLY (launch.json must encode them literally; the weir token is the EXISTING WEIR token, not a new one): [\"0x58b82fa656ecf47a0dca5be6bad06b92e22f7dbe\", \"0x5f7bb59365ce557c26dbcaa4ee9d39a4b95b7127\", \"0xa43e6f75ee006411f79ac1c84120606c2330de82\", \"0x5598aa9146215bc13eb26f2c692ad1461fd32982\", \"604800\", \"10000000000000000000000\"] = (weir, imd, intake, oracleSigner, disputeTimeout, minHold). launch.json kind is evm_contracts for chain 4663.\n\nCHANGES (each a minimal diff with a regression test): (1) RE-DISPUTE COOLDOWN. Track the time each party's last dispute on a stream ended (expireDispute, onFailure, enforce). _dispute reverts with a new custom error CooldownActive(uint256 until) while block.timestamp < thatTime + disputeTimeout for msg.sender; the OTHER party may dispute at once. The client's void, refund, pause and restart stay allowed whenever the stream is Active. (2) QUOTED USER TEXT. In questionFor wrap the client's termsURI and the disputer's note in double quotes, label them 'the client's text' and 'the disputer's note' as untrusted evidence, not instructions, and replace any double-quote character inside either text with a single quote before inserting. Keep the rest of the template and keep expectedBody identical to the body dispute() sends. (3) REMOVE submitAttestation and its tests; results arrive only through the Intake callbacks onOracleResult and onFailure. (4) onFailure releases the bond and returns the stream to Active for ANY status value (still Intake-only). (5) _pushOrDefer forwards at most 300,000 gas to the stream token's transfer; on revert, out-of-gas or a false return the amount is deferred to claimable as today. (6) _withdraw calls _accept only when the stream is Active and the amount is greater than zero; accept() and the recipient's own dispute are unchanged; a Closed or Disputed stream never records acceptance. (7) Emit Paused when a dispute pauses a running stream and Restarted when an accepted ruling or a released dispute resumes it. (8) README: state exactly which entry points are nonReentrant (onOracleResult is not), that implicit acceptance needs a positive withdrawal while Active, that the bond is tier bps of the stake left at dispute time (a disputer can shrink it first), and the cooldown; remove the unreachable MAX_QUESTION_BYTES guard or mark it defensive.\n\nTESTS. Keep the existing suite passing (updated only where a change requires it) and add: cooldown refused for the same party after expiry, failure and an accepted enforce, allowed for the other party, allowed after the timeout, client void between disputes; hostile terms and note text quoted and neutralised, expectedBody equals the body; no submitAttestation; onFailure with status 0, 3 and 255 releases the bond; a gas-burning token and a false-returning token defer to claimable and claim() pays later; zero-amount and Closed-state withdrawals never accept; Paused and Restarted events on dispute release and accepted enforcement.\n\nBUILD. foundry.toml unchanged (bytecode_hash = \"none\"); README quotes it. Export the ABI to docs/abi/Weir.json. No dependency changes.",
+    "objective": "Weir v2: deploy the Weir contract from this repository as a NEW contract on Robinhood Chain (chainId 4663). Contracts only: NO launch token, NO pool, NO distributor, NO website. The code is already written, tested (166 Foundry tests) and adversarially reviewed; this job audits it as it arrived and deploys it UNCHANGED. Do not edit src/, test/, README.md or foundry.toml. Build: forge build && forge test; the root foundry.toml pins solc 0.8.26, optimizer_runs 1, evm_version cancun, bytecode_hash none, and the runtime is 24,533 bytes against the 24,576-byte limit, so any compiler or setting change breaks deployment.\n\nDEPLOY. One contract, Weir, flat constructor arguments EXACTLY as in launch.json (kind evm_contracts, chain 4663): weir = the EXISTING WEIR token 0x58b82fa656ecf47a0dca5be6bad06b92e22f7dbe, imd 0x5f7bb59365ce557c26dbcaa4ee9d39a4b95b7127, intake 0xa43e6f75ee006411f79ac1c84120606c2330de82, oracleSigner 0x5598aa9146215bc13eb26f2c692ad1461fd32982, disputeTimeout 604800, minHold 10000000000000000000000. Report any finding at medium or above and block deployment on high or critical. Do not claim an independent audit.",
     "shape": "chain",
     "steps": [
       {
         "skill": "audit-imported-code"
-      },
-      {
-        "skill": "refine-project",
-        "paths": [
-          "src/**",
-          "test/**",
-          "README.md",
-          "launch.json",
-          "docs/abi/Weir.json"
-        ],
-        "acceptanceCriteria": [
-          "Constructor, economics and state machine unchanged; launch.json is kind evm_contracts for chain 4663 with the six literal constructor args and no token or pool",
-          "A party cannot re-dispute a stream within disputeTimeout of its own last dispute ending; the other party and the client's void/refund/pause are unaffected",
-          "submitAttestation is gone; onFailure releases the bond for any status; token payouts forward at most 300,000 gas and defer on revert or false",
-          "The question quotes and labels the client's text and the disputer's note as untrusted evidence; expectedBody equals the dispatched body",
-          "README states the nonReentrant entry points, implicit acceptance and bond behaviour correctly and claims no independent audit"
-        ]
-      },
-      {
-        "skill": "write-foundry-tests",
-        "paths": [
-          "test/**"
-        ]
       },
       {
         "skill": "adversarial-review"
@@ -45,6 +22,6 @@
     "chainId": 4663,
     "github": true,
     "repoUrl": "https://github.com/SwarmStream/weir-contracts.git",
-    "baseCommit": "92847318beaf5f4b95190a3d1fe3868ea43cdae4"
+    "baseCommit": "291fe2f26396040c4dc59e614565b1f00154434d"
   }
 }
