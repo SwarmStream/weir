@@ -11,3 +11,7 @@
 .impeccable/serve.out
 .impeccable/brief-home.md
 web/node_modules/
+
+# Vercel link metadata (contains account ids); never commit
+.vercel/
+dist/.vercel/
