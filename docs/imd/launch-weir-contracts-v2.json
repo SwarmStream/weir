@@ -10,8 +10,8 @@
       {
         "skill": "refine-project",
         "paths": [
-          "src/Weir.sol",
-          "src/libraries/OracleText.sol",
+          "src/**",
+          "test/**",
           "README.md",
           "launch.json",
           "docs/abi/Weir.json"
