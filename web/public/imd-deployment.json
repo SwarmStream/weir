@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "launchId": "39c44402-22df-46a3-9825-4cba425f2ccd",
+  "launchId": "c107cc18-6ba3-4a66-a190-0f496e7c2d72",
   "chainId": 4663,
-  "sourceCommit": "a01e3ae534fbe2789742d5512ded7a99b2c83f85",
-  "attestationHash": "8aecad59722d571483ca0861daeb0b33ea6a66805c55f61abef08e2dc2a4e85d",
+  "sourceCommit": "108660578606392f284fe2ad19bd8b576ece0bae",
+  "attestationHash": "87f6b46bf48f07b1406efa6bcd83c8c18794c031c5797841a282bbdf60543582",
   "contracts": [
     {
       "name": "LaunchToken",
@@ -13,8 +13,8 @@
     },
     {
       "name": "Weir",
-      "address": "0x320de26e4bc988e0c425531e564ded3d2f730d32",
-      "abiHash": "9f830efe0ba948e6b888f29f31001907762f52126d556555cc855e6ec3e8cbcd",
+      "address": "0xde049547f1e55bb093e14d8f4545d1cc9b613f97",
+      "abiHash": "6c7d3d5ff69d4b49a6b5f61081c59eabcab0f1465dd424d33a0466b544c22a70",
       "abiPath": "abi/Weir.json"
     }
   ],

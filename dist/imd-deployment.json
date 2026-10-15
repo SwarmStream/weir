@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "launchId": "39c44402-22df-46a3-9825-4cba425f2ccd",
+  "launchId": "c107cc18-6ba3-4a66-a190-0f496e7c2d72",
   "chainId": 4663,
-  "sourceCommit": "a01e3ae534fbe2789742d5512ded7a99b2c83f85",
-  "attestationHash": "8aecad59722d571483ca0861daeb0b33ea6a66805c55f61abef08e2dc2a4e85d",
+  "sourceCommit": "108660578606392f284fe2ad19bd8b576ece0bae",
+  "attestationHash": "87f6b46bf48f07b1406efa6bcd83c8c18794c031c5797841a282bbdf60543582",
   "contracts": [
     {
       "name": "LaunchToken",
@@ -13,8 +13,8 @@
     },
     {
       "name": "Weir",
-      "address": "0x320de26e4bc988e0c425531e564ded3d2f730d32",
-      "abiHash": "9f830efe0ba948e6b888f29f31001907762f52126d556555cc855e6ec3e8cbcd",
+      "address": "0xde049547f1e55bb093e14d8f4545d1cc9b613f97",
+      "abiHash": "6c7d3d5ff69d4b49a6b5f61081c59eabcab0f1465dd424d33a0466b544c22a70",
       "abiPath": "abi/Weir.json"
     }
   ],
@@ -79,23 +79,23 @@
     },
     {
       "path": "abi/Weir.json",
-      "sha256": "d2cc99665f33b4b47ce9c7f6c8dd8637b2c189cae2276ed0857a8f51d70a1103"
+      "sha256": "127e84c3fedac60fcf4ffcd4a00a563a986e577cdc29609d457efdc398fd4f0a"
     },
     {
-      "path": "assets/ccip-3cmVI4Dp.js",
-      "sha256": "d66fca3997a7394a8836ffcd0d5e2676b7f5115c4ecfd2a801100632457a2f16"
+      "path": "assets/ccip-DVH4tlkP.js",
+      "sha256": "09db8b9d93f69d4f9967d815117cd290094974fb584c40e992a2fbb7bb92bca8"
     },
     {
-      "path": "assets/dist-Bgyrp66F.js",
-      "sha256": "c71b0a0a4c213407201630561f90d9195822a20af96db7b94818db2f37a19025"
+      "path": "assets/dist-l6tnXqUE.js",
+      "sha256": "3143f5774c34b3e131b68f203ac7ecb36851f904a4cc0743de9b6b51e53cba27"
     },
     {
-      "path": "assets/index-eVt5jN8c.js",
-      "sha256": "24ac64a28e336fa88770ded4d73b151abe5ae4b6f559fa02b8e80b3cdaf86380"
+      "path": "assets/index-BVTjE3W6.js",
+      "sha256": "1a661fc537420d9442b06337bed8358f63b9d143b07bf4bfb6143a2849c66f77"
     },
     {
-      "path": "assets/index-tTyK7sP7.css",
-      "sha256": "d1abad81cda1acb41adaf17728d65fe3c282723aaf071a33ec05c88faaa836b5"
+      "path": "assets/index-CmRZ2XX_.css",
+      "sha256": "4829f0bae8e8ac1ba6e6e46da66f89318a89f263c60b50ad78d4c14311ce7c89"
     },
     {
       "path": "assets/plates/backdrop.png",
@@ -207,7 +207,7 @@
     },
     {
       "path": "index.html",
-      "sha256": "7cb535e28f38978b61dd445a7c425ca3eac1caa547cc50f1d242c8795957f3c3"
+      "sha256": "917ccf3b24f2dbcaa1318d6ee175be3ef26d912b8f5b61d345c6126867246008"
     },
     {
       "path": "share.png",
