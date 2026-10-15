@@ -218,7 +218,8 @@ export function DisputeDialog({
       read<bigint>("oraclePrice"),
       read<bigint>("courtFund"),
     ]);
-    if (price !== quote.price || (quote.fund >= quote.price && fund < price))
+    const covered = price - (price * 2000n) / 10000n;
+    if (price !== quote.price || (quote.fund >= covered && fund < covered))
       throw new Error(
         "The oracle price or fee payer changed. Refresh the dispute preview before signing.",
       );
@@ -302,9 +303,9 @@ export function DisputeDialog({
             <div>
               <dt>Who pays the fee</dt>
               <dd>
-                {quote.fund >= quote.price
-                  ? "The court fund covers it"
-                  : "You do"}
+                {quote.fund >= quote.price - (quote.price * 2000n) / 10000n
+                  ? "You pay 20%. The court fund covers the rest, up to five disputes a day"
+                  : "You pay all of it"}
               </dd>
             </div>
           </dl>
@@ -323,8 +324,10 @@ export function DisputeDialog({
             </p>
           )}
           <p className="muted">
-            If the court fund runs out before your dispute lands, the fee is
-            taken from your wallet instead.
+            You always pay at least 20% of the fee yourself. If the court fund
+            runs out, or has already helped with five disputes today, the whole
+            fee is taken from your wallet instead. After a dispute ends, you
+            wait seven days before disputing the same stream again.
           </p>
           {requests.map((req, i) => (
             <DisputeApproval

@@ -5,7 +5,7 @@ import { LINKS } from "./config";
 import { useBalance, useRead, useRuntime, useStream, useToken } from "./data";
 import { tryAmount, units } from "./domain";
 import { ApprovalAction } from "./actions";
-import { External, Field, QueryState } from "./ui";
+import { External, Field, Notice, QueryState } from "./ui";
 import { Town } from "./Town";
 
 export function Eligibility({ compact = false }: { compact?: boolean }) {
@@ -158,6 +158,12 @@ export function Home() {
             Reviewers cost 0.5 IMD per dispute. When this fund holds enough, it
             pays; when it is short, the person who disputes pays.
           </p>
+          <Notice>
+            Anyone holding 10,000 WEIR can use this fund. Each dispute costs the
+            person raising it 20% of the fee, and the fund covers the rest for
+            at most five disputes a day. Add only what you are happy to give
+            away.
+          </Notice>
           <QueryState query={fund} />
           <button
             disabled={busy}

@@ -134,7 +134,10 @@ export function disputeAllowances(
   price: bigint,
   fund: bigint,
 ) {
-  const fee = fund >= price ? 0n : price;
+  // The contract pulls 20% of the fee from the disputer and the rest too when the court fund cannot cover it
+  // (or has already subsidised five disputes today), so the worst case is approved: only what is needed is used.
+  void fund;
+  const fee = price;
   return token.toLowerCase() === imd.toLowerCase()
     ? [{ token, amount: bond + fee, kind: "bond and oracle fee" }]
     : [
@@ -200,6 +203,12 @@ export function errorText(error: unknown): string {
         ) as ContractFunctionRevertedError)
       : undefined;
   const name = revert?.data?.errorName ?? e?.data?.errorName;
+  if (name === "CooldownActive") {
+    const until = (revert?.data?.args as readonly unknown[] | undefined)?.[0];
+    return typeof until === "bigint"
+      ? `You already raised a dispute on this stream. You can raise another on ${new Date(Number(until) * 1000).toLocaleString()}.`
+      : "You already raised a dispute on this stream recently. Wait a few days before raising another.";
+  }
   if (name)
     return (
       errors[name] ??

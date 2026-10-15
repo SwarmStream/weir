@@ -242,6 +242,14 @@ export function Create() {
         Say who, how much, and what for. Money moves per second once it is
         funded, and you can pause or stop any time.
       </p>
+      <Notice>
+        Before you fund a stream: if the other person opens a dispute, your
+        stream pauses until it is settled. They then wait seven days before
+        they can dispute it again, and you can stop the stream and take back
+        what is unearned in between. Stream only to people you trust and keep
+        deposits small. Reviewers read your agreement word for word, so write
+        only the work and the deadline.
+      </Notice>
       {!account ? <ConnectPrompt /> : <Eligibility compact />}
       {draft && token.data ? (
         <section className="form-surface review-surface">

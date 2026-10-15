@@ -266,6 +266,18 @@ function StreamActions({
           {access.recipient && (
             <section className="controls-section">
               <h2>You are the recipient</h2>
+              {acceptedAt === 0n && stream.state === 1 && (
+                <section className="terms-preview">
+                  <h3>Read this before you accept or withdraw</h3>
+                  <p className="muted">
+                    Reviewers read exactly these words. Withdrawing also accepts
+                    them.
+                  </p>
+                  <p className="terms-quote">
+                    {safeUri(stream.termsURI) ?? stream.termsURI}
+                  </p>
+                </section>
+              )}
               <div className="controls-grid">
                 <section>
                   <h3>Withdraw what has streamed</h3>
