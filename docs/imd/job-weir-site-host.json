@@ -1,0 +1,15 @@
+{
+  "action": "job.continue",
+  "input": {
+    "parentJobId": "1fb039a0-e51e-4875-9692-e3a216eaab89",
+    "objective": "MOVE THE NAME TO THE NEW DESIGN. The Weir site label \"weir\" (https://weir.sites.imd.fun, ENS name weir.site.identitymd.eth) currently points at the old IPFS pin bafybeie5lcp7dw4xpaqpfdtca4msytirto3xcqntq3ki5vtl3uzy2ixlpq. Publish the project's latest delivered dist/ (the redesigned site, delivered by the previous job and merged to main) to IPFS and REPOINT that same label and ENS name to the new pin, so https://weir.sites.imd.fun serves the new design. Update the existing label; do not create a second site or a different name. If the existing name cannot be repointed, say so plainly in the result and do not create a substitute.\n\nThis job changes no source, copy, design, image or contract data; it only hosts what was delivered. Leave dist/imd-deployment.json and dist/abi/ exactly as delivered. Do not recompress or alter the PNG images.\n\nBefore finishing, load the published site and confirm: the index page loads; the routes #/, #/create, #/streams, #/stream/1, #/stream/1/receipt/client and #/records all render; fonts and images come from the site itself; no external script, analytics or tracker is loaded; the home page shows the pixel-art street scene, not tiny placeholder images. Report the new IPFS pin.",
+    "steps": [
+      {
+        "skill": "site-content-check"
+      }
+    ],
+    "shape": "chain",
+    "ipfs": "weir",
+    "github": true
+  }
+}

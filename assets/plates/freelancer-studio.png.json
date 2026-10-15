@@ -1,0 +1,11 @@
+{
+  "prompt": "Upscale the reference image faithfully to a clean high-resolution pixel-art plate: keep the identical layout, framing, crop and proportions of the reference, element for element and position for position (dark roof slab cut off at the top edge with chimney and water-tank base, brick pillars at both edges, pale band across the top, hooded freelancer with blue cap and sunglasses at a laptop at lower centre-right, potted plant at lower left, framed posters and two yellow lightning-bolt pictures on the back wall, articulated lamp and a stack of equipment at right, wooden desk across the bottom). Remove any lettering. Crisp hard-edged pixels, no anti-aliasing, 16-colour palette, transparent outside the building. Do not reinterpret, recompose, add or remove anything.\n",
+  "createdAt": "2026-10-15T01:50:04.223Z",
+  "tool": "impeccable generate-image",
+  "model": "gpt-image-2.5-flare",
+  "background": "transparent",
+  "outputFormat": "png",
+  "refs": [
+    ".impeccable/build/crops/freelancer-studio.png"
+  ]
+}

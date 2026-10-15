@@ -1,0 +1,482 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-14T00:00:00Z",
+  "title": "Design System: Weir.",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "primary",
+        "displayName": "Ink",
+        "canonical": "#0a0b11",
+        "tonalRamp": [
+          "#0a0b11",
+          "#1a1c24",
+          "#2c2f3a",
+          "#444856",
+          "#5e6373",
+          "#8a8fa0",
+          "#bfc3cf",
+          "#eceef3"
+        ]
+      },
+      "yellow": {
+        "role": "primary",
+        "displayName": "School-bus Yellow",
+        "canonical": "#f7c751",
+        "tonalRamp": [
+          "#3d2d00",
+          "#6b5000",
+          "#9c7500",
+          "#c98f00",
+          "#e8b53a",
+          "#f7c751",
+          "#ffd978",
+          "#ffe08a"
+        ]
+      },
+      "brick": {
+        "role": "secondary",
+        "displayName": "Brick",
+        "canonical": "#b8402a",
+        "tonalRamp": [
+          "#2c0d07",
+          "#521910",
+          "#7d2719",
+          "#a02f22",
+          "#b8402a",
+          "#d4654f",
+          "#eaa08f",
+          "#fff1eb"
+        ]
+      },
+      "sky": {
+        "role": "secondary",
+        "displayName": "Pixel Sky",
+        "canonical": "#56c7f8",
+        "tonalRamp": [
+          "#062a3a",
+          "#0c4d6b",
+          "#16729c",
+          "#2a9bd1",
+          "#56c7f8",
+          "#8ad9fa",
+          "#bfe9fc",
+          "#e6f4fd"
+        ]
+      },
+      "grass": {
+        "role": "secondary",
+        "displayName": "Grass",
+        "canonical": "#4f8f3a",
+        "tonalRamp": [
+          "#0f2309",
+          "#1d3f14",
+          "#2f5f22",
+          "#4f8f3a",
+          "#6cae55",
+          "#93c781",
+          "#c2e0b6",
+          "#edf5e9"
+        ]
+      },
+      "soil": {
+        "role": "neutral",
+        "displayName": "Soil",
+        "canonical": "#4c2c24",
+        "tonalRamp": [
+          "#1e100c",
+          "#2f1a14",
+          "#4c2c24",
+          "#6b4236",
+          "#8a5a4b",
+          "#ad8071",
+          "#d1b0a5",
+          "#f1e6e2"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#f8f8f8",
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#5c5c5c",
+          "#7a7a7a",
+          "#9c9c9c",
+          "#c2c2c2",
+          "#e3e3e3",
+          "#f8f8f8"
+        ]
+      },
+      "sign": {
+        "role": "neutral",
+        "displayName": "Sign Plate",
+        "canonical": "#f8f7ee",
+        "tonalRamp": [
+          "#262519",
+          "#403e2a",
+          "#5c5a3f",
+          "#7a7757",
+          "#9c9975",
+          "#c2bf9e",
+          "#e3e1cc",
+          "#f8f7ee"
+        ]
+      },
+      "wood": {
+        "role": "neutral",
+        "displayName": "Wood Plank",
+        "canonical": "#f6cb87",
+        "tonalRamp": [
+          "#3a2708",
+          "#5e4010",
+          "#875c18",
+          "#b07a24",
+          "#d49a3c",
+          "#f6cb87",
+          "#fadcad",
+          "#fdf0dc"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "canonical": "#4a5160",
+        "tonalRamp": [
+          "#121419",
+          "#23262e",
+          "#363b46",
+          "#4a5160",
+          "#646c7e",
+          "#8c93a3",
+          "#bcc1cc",
+          "#eceef2"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#d7dce3",
+        "tonalRamp": [
+          "#1e2227",
+          "#353b43",
+          "#4f5760",
+          "#6e7883",
+          "#9099a5",
+          "#b4bcc6",
+          "#d7dce3",
+          "#f2f4f7"
+        ]
+      },
+      "highlight": {
+        "role": "neutral",
+        "displayName": "Highlight Blue",
+        "canonical": "#e6f4fd",
+        "tonalRamp": [
+          "#0e2a3b",
+          "#164760",
+          "#226b8e",
+          "#3692bf",
+          "#6ab6dd",
+          "#a3d4ee",
+          "#cfe8f8",
+          "#e6f4fd"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Town Headline",
+        "purpose": "The one headline inside the 1536x1024 town frame; cqw units so it scales with the frame."
+      },
+      "headline": {
+        "displayName": "Page Headline",
+        "purpose": "h1 on product pages and the mobile town copy."
+      },
+      "title": {
+        "displayName": "Section Title",
+        "purpose": "h2, form panel headings."
+      },
+      "subtitle": {
+        "displayName": "Subtitle",
+        "purpose": "h3, the three stops."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Paragraphs, inputs, terms text; max 72ch."
+      },
+      "small": {
+        "displayName": "Small",
+        "purpose": "Helpers, tables, captions, product-page nav, footer."
+      },
+      "control": {
+        "displayName": "Control",
+        "purpose": "All buttons; wallet button 0.65rem; mobile nav 0.55rem."
+      },
+      "numeral": {
+        "displayName": "Numerals",
+        "purpose": "Amounts, dd values, fund figures: tabular-nums slashed-zero."
+      }
+    },
+    "shadows": [
+      {
+        "name": "bevel-yellow",
+        "value": "inset -2px -2px 0 #c98f00, inset 2px 2px 0 #ffe08a",
+        "purpose": "Primary button at rest."
+      },
+      {
+        "name": "bevel-white",
+        "value": "inset -2px -2px 0 var(--color-border), inset 2px 2px 0 #ffffff",
+        "purpose": "Secondary button at rest."
+      },
+      {
+        "name": "bevel-pressed",
+        "value": "inset 2px 2px 0 var(--color-border)",
+        "purpose": "Any button while active, with translate(1px, 1px)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "coins-advance",
+        "value": "4s steps(8, end) infinite; translateX(0) to translateX(5.2%)",
+        "purpose": "Coins step along the pipe; only under prefers-reduced-motion: no-preference."
+      },
+      {
+        "name": "control-transition",
+        "value": "background-color 120ms ease-out, border-color 120ms ease-out, transform 120ms ease-out",
+        "purpose": "Button state change (shared theme)."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "town-strip",
+        "value": "900px"
+      },
+      {
+        "name": "phone",
+        "value": "640px"
+      }
+    ],
+    "vocabulary": {
+      "use": [
+        "reviewers",
+        "deposit",
+        "terms",
+        "per day",
+        "settle",
+        "paused",
+        "closed",
+        "not audited"
+      ],
+      "avoidInPrimaryCopy": [
+        "oracle",
+        "hash",
+        "URI",
+        "attestation",
+        "bps",
+        "tier",
+        "rate per second",
+        "enforce"
+      ]
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Yellow pixel-bevel button for the single action on a surface (Start a stream, Connect wallet).",
+      "html": "<button class=\"ds-btn-primary\">Start a stream</button>",
+      "css": ".ds-btn-primary { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 18px; border: 2px solid var(--px-ink, #0a0b11); border-radius: 0; background: var(--px-yellow, #f7c751); color: var(--px-ink, #0a0b11); box-shadow: inset -2px -2px 0 #c98f00, inset 2px 2px 0 #ffe08a; font-family: 'Press Start 2P', 'Pixelify Sans', monospace; font-weight: 400; font-size: 0.7rem; line-height: 1.4; white-space: nowrap; cursor: pointer; } .ds-btn-primary:hover { background: #ffd978; } .ds-btn-primary:active { background: #e8b53a; transform: translate(1px, 1px); box-shadow: inset 2px 2px 0 #d7dce3; } .ds-btn-primary:focus-visible { outline: 2px solid #b8402a; outline-offset: 4px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "White pixel-bevel button for secondary actions, tabs and option chips.",
+      "html": "<button class=\"ds-btn-secondary\">Sponsor the court fund</button>",
+      "css": ".ds-btn-secondary { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 18px; border: 2px solid #0a0b11; border-radius: 0; background: #ffffff; color: #0a0b11; box-shadow: inset -2px -2px 0 #d7dce3, inset 2px 2px 0 #ffffff; font-family: 'Press Start 2P', 'Pixelify Sans', monospace; font-weight: 400; font-size: 0.7rem; line-height: 1.4; white-space: nowrap; cursor: pointer; } .ds-btn-secondary:hover { background: #e6f4fd; } .ds-btn-secondary:active { transform: translate(1px, 1px); box-shadow: inset 2px 2px 0 #d7dce3; } .ds-btn-secondary:focus-visible { outline: 2px solid #b8402a; outline-offset: 4px; } .ds-btn-secondary:disabled { cursor: not-allowed; color: #4a5160; background: #eef3f7; border-color: #d7dce3; }"
+    },
+    {
+      "name": "Token Option",
+      "kind": "chip",
+      "refersTo": "token-option-selected",
+      "description": "Picker chip: pixel symbol over a sans description; selected fills yellow.",
+      "html": "<div class=\"ds-token-row\"><button class=\"ds-token selected\">USDG<span>Dollar token</span></button><button class=\"ds-token\">WEIR<span>Weir token</span></button></div>",
+      "css": ".ds-token-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; } .ds-token { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 12px 14px; min-height: 60px; text-align: left; border: 2px solid #0a0b11; border-radius: 0; background: #ffffff; color: #0a0b11; box-shadow: inset -2px -2px 0 #d7dce3, inset 2px 2px 0 #ffffff; font-family: 'Press Start 2P', 'Pixelify Sans', monospace; font-weight: 400; font-size: 0.7rem; cursor: pointer; } .ds-token span { font-family: 'Alef', system-ui, sans-serif; font-size: 0.875rem; color: #4a5160; } .ds-token:hover { background: #e6f4fd; } .ds-token.selected { background: #f7c751; box-shadow: inset -2px -2px 0 #c98f00, inset 2px 2px 0 #ffe08a; } .ds-token:focus-visible { outline: 2px solid #b8402a; outline-offset: 4px; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Field with a sans label above and muted helper below. Note: the shipped input still carries the superseded 7px radius.",
+      "html": "<label class=\"ds-field\">Who are you paying?<input class=\"ds-input\" placeholder=\"0x...\" /><small>Their wallet address. They withdraw what has streamed, any time.</small></label>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 8px; font-family: 'Alef', system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; color: #0a0b11; } .ds-input { background: #ffffff; border: 1px solid #0a0b11; border-radius: 7px; padding: 11px 12px; width: 100%; font-family: 'Alef', system-ui, sans-serif; font-size: 1rem; line-height: 1.5; color: #0a0b11; } .ds-input::placeholder { color: #4a5160; opacity: 1; } .ds-input:focus-visible { outline: 2px solid #b8402a; outline-offset: 4px; } .ds-field small { font-weight: 400; color: #4a5160; line-height: 1.5; }"
+    },
+    {
+      "name": "Form Surface",
+      "kind": "card",
+      "refersTo": "form-surface",
+      "description": "White panel with a 2px ink border and square corners; the container for Create's two halves and the terms box.",
+      "html": "<section class=\"ds-surface\"><h2>What for</h2><p>What are they delivering, by when?</p></section>",
+      "css": ".ds-surface { background: #ffffff; border: 2px solid #0a0b11; border-radius: 0; padding: 32px; } .ds-surface h2 { margin: 0 0 24px; font-family: 'Press Start 2P', 'Pixelify Sans', monospace; font-weight: 400; font-size: 1.05rem; line-height: 1.4; color: #0a0b11; } .ds-surface p { margin: 0; font-family: 'Alef', system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; color: #0a0b11; }"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "button-secondary",
+      "description": "Product-page nav: sans links on a hairline rule, brick underline on the current page.",
+      "html": "<nav class=\"ds-nav\"><a aria-current=\"page\">Home</a><a>Start a stream</a><a>My streams</a><a>Records</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 32px; border-bottom: 1px solid #d7dce3; font-family: 'Alef', system-ui, sans-serif; } .ds-nav a { padding: 12px 2px 16px; font-size: 0.875rem; color: #0a0b11; text-decoration: none; border-bottom: 2px solid transparent; cursor: pointer; } .ds-nav a:hover { color: #0a0b11; } .ds-nav a[aria-current=\"page\"] { border-color: #b8402a; } .ds-nav a:focus-visible { outline: 2px solid #b8402a; outline-offset: 4px; }"
+    },
+    {
+      "name": "Town Sign",
+      "kind": "custom",
+      "refersTo": "sign",
+      "description": "Signature: white plate, ink border, uppercase pixel text; money labels sit on a wood plank.",
+      "html": "<div class=\"ds-signs\"><p class=\"ds-sign\">Reviewers</p><p class=\"ds-sign ds-sign-wood\">deposit<br>100 WEIR</p></div>",
+      "css": ".ds-signs { display: flex; gap: 16px; align-items: flex-start; } .ds-sign { margin: 0; background: #f8f7ee; border: 2px solid #0a0b11; padding: 6px 10px; font-family: 'Press Start 2P', 'Pixelify Sans', monospace; font-weight: 400; font-size: 0.8rem; line-height: 1.05; text-transform: uppercase; text-align: center; white-space: nowrap; color: #0a0b11; } .ds-sign-wood { background: #f6cb87; text-transform: none; font-size: 0.55rem; }"
+    },
+    {
+      "name": "Coin Pipe",
+      "kind": "custom",
+      "refersTo": "sign",
+      "description": "Signature motion: pixel coins and arrows stepping along a pipe, only when motion is allowed.",
+      "html": "<div class=\"ds-pipe\"><div class=\"ds-coins\"><svg viewBox=\"0 0 8 8\"><rect x=\"2\" y=\"0\" width=\"4\" height=\"8\" fill=\"#0b0e18\"/><rect x=\"0\" y=\"2\" width=\"8\" height=\"4\" fill=\"#0b0e18\"/><rect x=\"1\" y=\"2\" width=\"6\" height=\"4\" fill=\"#f7cc19\"/><rect x=\"2\" y=\"1\" width=\"4\" height=\"6\" fill=\"#f7cc19\"/><rect x=\"3\" y=\"3\" width=\"2\" height=\"2\" fill=\"#d9a400\"/></svg><svg viewBox=\"0 0 12 10\" class=\"ds-arrow\"><rect x=\"0\" y=\"4\" width=\"8\" height=\"2\" fill=\"#f8f8f8\"/><rect x=\"6\" y=\"2\" width=\"2\" height=\"2\" fill=\"#f8f8f8\"/><rect x=\"8\" y=\"4\" width=\"2\" height=\"2\" fill=\"#f8f8f8\"/><rect x=\"6\" y=\"6\" width=\"2\" height=\"2\" fill=\"#f8f8f8\"/></svg><svg viewBox=\"0 0 8 8\"><rect x=\"2\" y=\"0\" width=\"4\" height=\"8\" fill=\"#0b0e18\"/><rect x=\"0\" y=\"2\" width=\"8\" height=\"4\" fill=\"#0b0e18\"/><rect x=\"1\" y=\"2\" width=\"6\" height=\"4\" fill=\"#f7cc19\"/><rect x=\"2\" y=\"1\" width=\"4\" height=\"6\" fill=\"#f7cc19\"/><rect x=\"3\" y=\"3\" width=\"2\" height=\"2\" fill=\"#d9a400\"/></svg></div></div>",
+      "css": ".ds-pipe { background: #4c2c24; padding: 24px 16px; overflow: hidden; } .ds-coins { display: flex; align-items: center; gap: 20px; height: 24px; background: #2a6fb5; border-top: 2px solid #0a0b11; border-bottom: 2px solid #0a0b11; padding: 0 12px; width: max-content; } .ds-coins svg { width: 20px; height: 20px; shape-rendering: crispEdges; display: block; } .ds-coins .ds-arrow { width: 16px; height: 14px; } @media (prefers-reduced-motion: no-preference) { .ds-coins { animation: ds-coins-advance 4s steps(8, end) infinite; } @keyframes ds-coins-advance { from { transform: translateX(0); } to { transform: translateX(5.2%); } } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Town With Its Walls Off",
+    "overview": "Weir. is an 8-bit cutaway town: client's house, reviewers' hall, a lit door, the freelancer's studio, and under the pavement a pipe of coins. Every object wears a sign or a tiny label with a one-pixel pointer, so the scene explains itself without a feature grid. Product pages below are plain paper: pixel lettering for headings and controls, a smooth sans for reading, hyperlegible numerals for money. Yellow marks the thing to press; brick marks current page and focus. It rejects the split hero, the cream-serif default, soft shadows and rounded cards.",
+    "keyCharacteristics": [
+      "Pixel plates (`assets/plates/*.png`, `image-rendering: pixelated`) with provenance sidecars",
+      "Pixel-bevel controls: 2px ink border, inset light/shade, no shadow, no radius",
+      "One motion: coins step along the pipe; nothing else moves",
+      "",
+      "Colors",
+      "",
+      "paper sky and a small pixel palette; yellow is rare and always actionable.",
+      "",
+      "# Primary",
+      "**School-bus Yellow** (`yellow`): primary button, Connect wallet, selected options, coins. Lighter on hover, darker pressed.",
+      "**Ink** (`ink`): all text, every border, pressed tabs, the active mobile dot.",
+      "",
+      "# Secondary",
+      "**Brick** (`brick`): brand period, current-nav underline, focus outline, the pause valve. Never a fill.",
+      "",
+      "# Neutral",
+      "Paper** page; **Surface** panels, inputs, secondary buttons; **Sign** / **Wood** town plates (wood for money); **Muted** helpers; **Border** hairlines, idle dots; **Highlight** notices, secondary hover; **Subtle** disabled fills; **Error / Pending** status tints, always also in words.",
+      "",
+      "# Named Rules",
+      "The One Yellow Rule.** Yellow is only a thing you can press or a coin.",
+      "The Ink Border Rule.** Edges are drawn in ink (2px on pages, 0.13–0.26cqw in the town), never implied by shadow.",
+      "",
+      "Typography",
+      "",
+      "Display Font:** Press Start 2P, self-hosted (Pixelify Sans, monospace fallbacks)",
+      "Body Font:** Alef (Avenir Next, system-ui)",
+      "Numeral Font:** Atkinson Hyperlegible, `tabular-nums slashed-zero`",
+      "",
+      "",
+      "# Hierarchy",
+      "**Display** (400, 2.6cqw, lh 1): the town headline; about 40px at 1536.",
+      "**Headline** (400, 1.9rem, lh 1.25; 2rem on phones): page `h1`, mobile town copy.",
+      "**Title** (400, 1.05rem, lh 1.4): `h2`; **Subtitle** (0.85rem): `h3`.",
+      "**Body** (400, 1rem, lh 1.55, max 72ch). **Small** (0.875rem): helpers, tables, page nav, footer.",
+      "**Control** (400, 0.7rem, lh 1.4): buttons; mobile nav 0.55rem.",
+      "**Town signs/labels**: 1.3–1.6cqw uppercase; labels 0.68–1.0cqw.",
+      "",
+      "# Named Rules",
+      "The No-Faux-Bold Rule.** Press Start 2P ships one weight; headings and controls are 400, letter-spacing 0.",
+      "The Numerals Rule.** Amounts never render in the pixel face.",
+      "",
+      "Layout",
+      "",
+      "oduct pages: centred column `min(1120px, 100% - 64px)` (32px gutters below 640px), the 4px `spacing` scale, 1px section rules, two-column grids collapsing at 640px. The town is a 1536×1024 frame (`aspect-ratio`, `container-type: inline-size`); every box is a percentage measured from the approved comp. Breakpoints: **900px** (town becomes a strip), **640px** (single column).",
+      "",
+      "ones (≤900px): the town's chrome and copy hide; a pixel top bar (2px ink rule) and scrolling pixel nav, headline and body as text, then the scene as a **1100px pannable strip** (513px tall, `scroll-snap-type: x proximity`), three 10px square dots (ink when current) and a full-width yellow Start a stream button.",
+      "",
+      "Elevation & Depth",
+      "",
+      "drop shadows. Depth is a pixel bevel: 2px ink border, `inset -2px -2px` shade, `inset 2px 2px` light (yellow: `#c98f00` / `#ffe08a`; white: `border` / white). Pressing shifts the control 1px down-right. The town layers plates by z-order.",
+      "",
+      "The Flat-Pixel Rule.** No shadow that leaves the box; no blur; no gradient.",
+      "",
+      "Shapes",
+      "",
+      "uare corners wherever the world has landed; 1px ink pointer rules rotated 18–35°; rect-only pixel SVGs with `shape-rendering: crispEdges`. The two-arch mark is never redrawn.",
+      "",
+      "Components",
+      "",
+      "# Buttons",
+      "uare, 2px ink border, min-height 44px, pixel face 0.7rem. **Primary:** yellow fill and bevel; hover lighter; active darker plus 1px translate. **Secondary:** white, grey/white bevel, hover highlight. **Danger:** error text and border. **Text button:** underlined, no border. **Disabled:** subtle fill, muted text.",
+      "",
+      "# Signs and labels (signature)",
+      "Sign:** `sign` plate, 0.2cqw ink border, uppercase pixel text; money signs on `wood`. **Label:** 0.13cqw border, name over figure; figures are stream #1's live numbers, else \"(example)\". **Pointer caption:** bare pixel text with a 1px rotated rule.",
+      "",
+      "# Token picker / chips",
+      "uare secondary buttons in a 120px auto-fit grid; selected is yellow. Pressed tabs invert to ink.",
+      "",
+      "# Cards / Containers",
+      "Form surface:** white, 2px ink border, square, 32px padding (24/20 on phones). **Terms box:** same, 16px, 72ch.",
+      "",
+      "# Inputs / Fields",
+      "ite, 1px ink border, 11×12px padding, 1rem Alef; 0.875rem label above, muted helper below. Focus: 2px brick outline, 4px offset.",
+      "",
+      "# Coin pipe (signature motion)",
+      "der `prefers-reduced-motion: no-preference` the coin row advances `translateX(0 → 5.2%)` in `steps(8, end)` over 4s, looping. Nothing else animates beyond the 120ms button colour transition.",
+      "",
+      "Do's and Don'ts",
+      "",
+      "# Do:",
+      "**Do** draw every control as a pixel bevel: 2px ink border, inset light/shade, square corners.",
+      "**Do** set amounts in Atkinson Hyperlegible, tabular slashed-zero.",
+      "**Do** say reviewers, deposit, terms, per day, settle, paused, closed.",
+      "",
+      "# Don't:",
+      "**Don't** add drop shadows, blur, gradients or anti-aliased plate scaling.",
+      "**Don't** write oracle, hash, URI, attestation, bps, tier or rate per second outside a Details disclosure.",
+      "**Don't** ease or fade; motion is `steps()` under `prefers-reduced-motion: no-preference` only."
+    ],
+    "rules": [
+      {
+        "name": "The One Yellow Rule",
+        "body": "Yellow is only a thing you can press or a coin.",
+        "section": "colors"
+      },
+      {
+        "name": "The Ink Border Rule",
+        "body": "Edges are drawn in ink (2px on pages, 0.13–0.26cqw in the town), never implied by shadow.",
+        "section": "colors"
+      },
+      {
+        "name": "The No-Faux-Bold Rule",
+        "body": "Press Start 2P ships one weight; headings and controls are 400, letter-spacing 0.",
+        "section": "typography"
+      },
+      {
+        "name": "The Numerals Rule",
+        "body": "Amounts never render in the pixel face.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-Pixel Rule",
+        "body": "No shadow that leaves the box; no blur; no gradient.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do draw every control as a pixel bevel: 2px ink border, inset light/shade, square corners.",
+      "Do set amounts in Atkinson Hyperlegible, tabular slashed-zero.",
+      "Do say reviewers, deposit, terms, per day, settle, paused, closed."
+    ],
+    "donts": [
+      "Don't add drop shadows, blur, gradients or anti-aliased plate scaling.",
+      "Don't write oracle, hash, URI, attestation, bps, tier or rate per second outside a Details disclosure.",
+      "Don't ease or fade; motion is `steps()` under `prefers-reduced-motion: no-preference` only."
+    ],
+    "notUnified": "Older swarm components still carry the superseded theme: 7px input radius; 8–20px radii on `.eligibility`, `.notice`, `.stream-metrics`, `.badge`, `.dialog`; the dialog's `0 24px 80px` shadow; green `::selection` and `.flow-art`; `theme-color #f7f7f2`. Drift to repair, not rules."
+  }
+}

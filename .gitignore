@@ -1,0 +1,13 @@
+/cache/
+/out/
+/test/scratch/
+# Impeccable working state (comps, build gates, review captures) stays local; design records are committed.
+.impeccable/mocks/
+.impeccable/build/
+.impeccable/review/
+.impeccable/prompts/
+.impeccable/decision-*.json
+.impeccable/comp-round.json
+.impeccable/serve.out
+.impeccable/brief-home.md
+web/node_modules/

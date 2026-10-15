@@ -1,0 +1,11 @@
+{
+  "prompt": "Use the provided crop as the approved visual reference and recreate it as a clean production asset at the target aspect ratio. This is a designed illustration plate. Output the same drawing, same style, same line weight and shading. Preserve silhouette, composition, perspective, palette (#f8f8f8, #56c7f8, #0a0b11), lighting, material, and texture exactly. Remove every piece of UI text, label, caption, button, and interface chrome that is not part of the artwork itself. Remove letterboxing, borders, card corners, drop shadows, and any layout background that the page will draw in code. Do not add objects. Do not change the concept. Do not restyle. The artwork fills the whole frame edge to edge at the same scale as the reference; no margins, no border, no background band. Region: cutaway underground band: dark brown soil with a blue steel pipe running the full width with elbow ends at both sides and a red valve wheel mounted on the pipe at the horizontal midpoint; pipe interior empty: no coins, no labels.\n\nMATCH THE REFERENCE PIPE THICKNESS: the blue pipe must be THIN, about one twelfth of the image height, running horizontally across the exact vertical centre of the image with small elbow fittings at both ends and the red valve wheel at the horizontal midpoint; everything else is dark brown pixel soil. No coins, no labels, no text. Crisp hard-edged pixel art, no anti-aliasing, opaque.",
+  "createdAt": "2026-10-15T02:14:20.599Z",
+  "tool": "impeccable generate-image",
+  "model": "gpt-image-2.5-flare",
+  "background": "opaque",
+  "outputFormat": "png",
+  "refs": [
+    ".impeccable/build/crops2/pipe-band.png"
+  ]
+}

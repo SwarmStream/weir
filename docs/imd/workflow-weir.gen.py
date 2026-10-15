@@ -1,0 +1,77 @@
+import json, sys
+REQUEST = """Launch Weir on Robinhood Chain (chainId 4663) as an IMD company: the network's launch token (Token name: Weir. Token symbol: WEIR. Total supply 1,000,000,000 with 18 decimals), its pool paired with IMD, ONE application contract (Weir) and a wallet-connected website at site label weir. Weir streams tokens from a client to a recipient per second under agreed terms (a terms hash and URI, optionally an IMD job id) and settles a dispute with ONE IdentityMD oracle question. The product takes NO fee. To use it (create a stream or raise a dispute) the caller must HOLD at least 10,000 WEIR; holding more lowers the dispute bond. Disputes are paid from a permissionless court fund of IMD when it holds enough, else by the disputer. Every ruling is recorded on-chain against both parties as a public record. Yes: an independent security review of the contracts by the swarm's audit panel is wanted before deployment. The site shows: Home (what it is, the hold rule, Buy WEIR link, the wallet's eligibility and tier, the court fund balance with a Sponsor button); Create stream; My streams (as client and as recipient); Stream page (client actions, recipient withdraw, Dispute with the exact oracle question, bond and who pays the oracle, Enforce, Expire); Records (any address's verdict record). Open source (MIT). Not audited beyond the swarm's panel; say so."""
+
+CONTEXT = """Robinhood Chain only. GitHub publication and IPFS hosting approved. Pair with IMD. No owner, admin, fee, upgrade path, pause switch or backend signer anywhere; $owner is not used. Self-contained stream engine (StreamNFT-style, no Sablier code or dependency). Who can call what: the client creates, deposits, pauses, restarts, adjusts, refunds and voids its own stream; the recipient withdraws; client or recipient disputes; anyone sponsors the court fund, enforces a ruling or expires a stale dispute; only the IdentityMD Intake calls the result callbacks. Numbers the contract enforces: MIN_HOLD 10,000 WEIR to create or dispute; bond = stake x bondBps by the disputer's WEIR tier (500 / 250 / 100 / 0 bps at 0 / 100,000 / 1,000,000 / 10,000,000 WEIR); oracle price 0.5 IMD; dispute timeout 7 days; panel 5, quorum 4; note up to 280 bytes. Who receives: the loser's bond goes to the counterparty; refunds to the client; streamed funds to the recipient; the court fund only ever leaves through the Intake; the launch pool's 1.25% trading fee is the network's (1% to the paying wallet) and of the 90% requester share, 89% of supply seeds the pool and 1% goes to the paying wallet (poolBps 8900)."""
+
+OBJ = """Weir: an ownerless contract with its own per-second stream engine and a dispute court that asks the IdentityMD oracle ONE bool question. Happy path costs nothing; the token (WEIR) gates use, sets the bond tier and nothing else.
+
+ORACLE (follow the oracle-consumer reference exactly). Intake v2 0xa43e6f75ee006411f79ac1c84120606c2330de82; action id "oracle.request@oracle-1"; price 5e17 IMD; IMD on Robinhood 0x5f7bb59365ce557c26dbcaa4ee9d39a4b95b7127. IIntake.requestWithFailure(bytes32 action, bytes body, (address target, bytes4 selector) callback, bytes4 onFailure, address asset, uint256 amount) returns bytes32 requestId; body = compact UTF-8 JSON; the writer calls the callback once with 200,000 gas inside a try. Attestation: EIP-712 domain {"IdentityMD Oracle","2",block.chainid,this}; type OracleAttestation(bytes32 requestId,uint256 chainId,bytes32 questionHash,uint8 answerType,bytes answer,uint256 figure,uint64 fromBlock,uint64 toBlock,bytes32 blockHash,bytes32 panelJobId,uint16 panelSize,uint16 quorum,uint16 agreed,uint64 issuedAt,uint64 expiresAt); struct hash uses keccak256(answer); answerType bool = 0; answer = abi.encode(bool). Signer immutable (today 0x5598aa9146215bc13eb26f2c692ad1461fd32982).
+
+DISPUTE BODY, compact: {"v":1,"question":Q,"chainId":<chainid>,"window":{"hours":24},"answerType":"bool","panelSize":5,"quorum":4,"validForSeconds":604800,"evidence":"panel","consumer":{"chainId":<chainid>,"verifyingContract":"<this, lowercase hex>"}}. Q, one fixed template (JSON-escape the note): "Weir stream <id> at <this> on chain <chainId>. Client <client> streams <token> to recipient <recipient> under the terms at <termsURI> (keccak256 <termsHash>)[, IMD job <imdJobId> if nonzero]. Dispute raised by the <client|recipient> with note: <note>. As of block <block.number>, has the recipient delivered the work those terms describe to the standard a reasonable client would accept? Answer true if yes, false if no."
+
+BOND AND TIERS. stake = balance - withdrawn (everything still inside the stream; dispute reverts if 0). tierBps(addr) from WEIR.balanceOf(addr): < 100,000e18 -> 500; >= 100,000e18 -> 250; >= 1,000,000e18 -> 100; >= 10,000,000e18 -> 0 (constants). bond = stake * tierBps(disputer) / 10000 in the stream token, pulled from the disputer at dispute(), held outside stream accounting. Disputer wins -> bond returned; loses -> bond to the counterparty; panel failure or timeout -> returned. The client loses when the ruling is accepted; the recipient loses when it is rejected.
+
+COURT FUND. sponsor(uint256 imdAmount): anyone, transferFrom, emits Sponsored. dispute() pays the 0.5 IMD from the fund when fund >= 5e17, else pulls it from the disputer (event says which). The fund leaves only through the Intake.
+
+RECORDS. records(address) = {clientWon, clientLost, recipientWon, recipientLost, raised} (uint32 each), updated at ruling; Verdict(streamId, requestId, panelJobId, accepted, client, recipient, disputer) event.
+
+CONSTRUCTOR, flat, all immutable: (IERC20 weir, IERC20 imd, IIntake intake, address oracleSigner, uint40 disputeTimeout, uint256 minHold). launch.json constructorArgs, exactly: ["$token", "0x5f7bb59365ce557c26dbcaa4ee9d39a4b95b7127", "0xa43e6f75ee006411f79ac1c84120606c2330de82", "0x5598aa9146215bc13eb26f2c692ad1461fd32982", "604800", "10000000000000000000000"] ($token = the launch token the factory deploys in the same transaction). Build: foundry.toml [profile.default] solc 0.8.26, optimizer true, runs 200, evm_version cancun, via_ir false, bytecode_hash = "none"; README quotes it. Deps: @openzeppelin/contracts v5 only (SafeERC20, EIP712, SignatureChecker, Strings, ReentrancyGuard). SPDX MIT. README: not audited (the panel is not an audit); the oracle is a panel judgement, not a court of law; the oracle fee is spent even if the panel disagrees; who can do what per state; the tier table; no yield, return or investment language."""
+
+STEP_CONTRACT = """src/Weir.sol. Stream { client, recipient, token, rate, pausedRate, balance, withdrawn, snapDebt, snapTime, state, termsHash, termsURI, imdJobId, requestId, disputedAt, disputer, bond, ruling }; State { None, Active, Disputed, Ruled, Closed }.
+ENGINE. streamed = min(snapDebt + rate * (now - snapTime), balance); withdrawable = streamed - withdrawn; refundable = balance - streamed. Every rate or balance change snapshots first (snapDebt = streamed, snapTime = now). An exhausted stream stops accruing and continues after a deposit.
+- createStream(address recipient, IERC20 token, uint128 rate, uint128 amount, bytes32 termsHash, string calldata termsURI, bytes32 imdJobId) returns (uint256 id): hold gate; pull amount (balance-diff check); client = msg.sender; Active. Revert on recipient zero or == msg.sender, rate 0, amount 0, termsHash 0.
+- Client only, Active: deposit(id, amount) (also in Disputed); pause (rate -> pausedRate, 0); restart(id, rate); adjust(id, rate); refund(id, amount <= refundable); refundMax; void: refund all refundable, Closed (the recipient may still withdraw).
+- Recipient only, any state: withdraw(id, amount <= withdrawable), withdrawMax.
+- dispute(id, string calldata note): client or recipient; hold gate; Active; stake > 0; note <= 280 bytes. Pause; pull the bond; take 0.5 IMD from the court fund or the caller; approve the Intake for exactly 5e17; build the body on-chain; requestWithFailure with (this, onOracleResult.selector) and onFailure.selector; store requestId, disputedAt, disputer, bond, keccak256(Q); Disputed; emit Disputed(id, requestId, disputer, bond, fundPaid).
+- onOracleResult(bytes32 requestId, Attestation calldata a, bytes calldata signature): only the Intake; requestId maps to a Disputed stream; verify as the reference; require a.requestId == requestId, a.chainId == block.chainid, a.answerType == 0, a.agreed >= a.quorum >= 4, now <= a.expiresAt; ruling = bool ? 1 : 2; Ruled; update records; emit Verdict; moves no tokens.
+- submitAttestation(uint256 id, Attestation calldata a, bytes calldata signature): permissionless; same checks plus a.requestId == stream.requestId; same effect.
+- onFailure(bytes32 requestId, uint8 status, bytes32 reason, uint16 agreed, uint16 answered, bytes calldata signature): only the Intake; bond back; Active (paused).
+- enforce(id), permissionless, Ruled: accepted -> restart at pausedRate, Active; rejected -> void (refundable to the client, recipient keeps withdrawable), Closed; bond to the winner per the objective; emit Enforced.
+- expireDispute(id), permissionless: Disputed and now > disputedAt + disputeTimeout -> bond back, Active (paused).
+- sponsor(uint256 imdAmount); views: streams, streamed, withdrawable, refundable, stake, tierBps, bondFor(id, addr), canUse, courtFund, records, questionOf, expectedBody.
+Rules: event per transition; custom errors; SafeERC20; CEI and nonReentrant where tokens move; token balance >= sum of (balance - withdrawn) + bonds, always. ABI to docs/abi/Weir.json."""
+
+STEP_TESTS = """test/: MockIntake that pulls 0.5 IMD, returns a deterministic requestId and records the body; mock WEIR, IMD and stream tokens (plus a fee-on-transfer token, a false-returning token and a reentrant token); a test signer key passed as oracleSigner with attestations built with vm.sign over the exact EIP-712 hash. Cover: hold gate below, at and above MIN_HOLD for create and dispute; every tier boundary for bondFor; accrual (streamed, withdrawable, refundable) across deposit, pause, restart, adjust, refund, void, exhaustion and a later deposit, with warps; every client/recipient function in every state (allowed and refused); dispute by each party and a stranger; stake 0 refused; bond pulled and held outside stream accounting; court fund used when >= 0.5 IMD, else the caller pays; body bytes == expectedBody; onOracleResult from a stranger, unknown requestId, twice, wrong signer, wrong chainId, wrong answerType, agreed < quorum, expired (all refused); accepted -> enforce restarts and routes the bond correctly for a client disputer and a recipient disputer; rejected -> enforce refunds exactly refundable, the recipient still withdraws, bond routed correctly; records updated for both parties; submitAttestation after a missed callback; onFailure returns the bond and a second dispute works; expireDispute before/after the timeout; reentrancy via the malicious tokens; the solvency invariant under fuzzed sequences; onOracleResult gas < 150,000."""
+
+STEP_SITE = """Static, wallet-connected site (wallet-connectors reference) for the deployed Weir on Robinhood 4663, reading addresses from .imd/reads/deployment.json. Pages: (1) Home: three sentences; the hold rule and the tier table; a Buy WEIR link to the launch pool on explorer.imd.fun; the connected wallet's WEIR balance, eligibility and tier; the court fund balance with a Sponsor (IMD approve then sponsor) action. (2) Create stream: recipient, token (symbol/decimals read on-chain), rate per second with a per-day helper, initial deposit, terms URI + keccak256 helper for pasted text or an uploaded file, optional IMD job id; approve then create as two steps with pending states. (3) My streams: as client and as recipient from StreamCreated events; per row: status, streamed, withdrawable, refundable, linked terms and IMD job (explorer.imd.fun/jobs/<id>). (4) Stream page: client actions (deposit, pause, restart, adjust, refund, void), recipient withdraw; Dispute dialog showing the exact question (expectedBody), the caller's bond (bondFor) and whether the court fund or the caller pays the 0.5 IMD, staging token approve, IMD approve and dispute; while Disputed a link to the oracle request on explorer.imd.fun, Enforce once Ruled, Expire after the timeout; both parties' records. (5) Records: look up any address. Every button: per-button pending state, chain switch to 4663, custom-error text. Plain words, no yield or return language; footer links the repo and the IdentityMD oracle docs and says it is not audited."""
+
+wf = {
+  "action": "workflow.open",
+  "input": {
+    "request": REQUEST,
+    "context": CONTEXT,
+    "draft": {
+      "objective": OBJ,
+      "shape": "chain",
+      "onchain": "evm_project",
+      "chainId": 4663,
+      "pairWith": "imd",
+      "contracts": ["Weir"],
+      "economics": {"poolBps": 8900, "remainderTo": "<WEIR-PAYER>"},
+      "github": True,
+      "ipfs": "weir",
+      "references": ["oracle-consumer", "eth-security", "eth-testing", "solidity-security-review", "pashov-skill", "wallet-connectors", "eth-frontend-ux"],
+      "steps": [
+        {"skill": "build-contract-project", "objective": STEP_CONTRACT,
+         "acceptanceCriteria": [
+           "Flat 6-argument constructor, all immutable; no owner, setter, pause switch, fee or upgrade path; no Sablier code",
+           "createStream and dispute revert unless the caller holds at least minHold WEIR; bond = stake x tier bps (500/250/100/0) pulled from the disputer and routed to the winner",
+           "streamed never exceeds balance; withdrawable + refundable == balance - withdrawn in every state",
+           "dispute pays 0.5 IMD from the court fund when it holds enough, else from the caller, pauses the stream and calls requestWithFailure with the specified body and callbacks",
+           "onOracleResult and submitAttestation verify the EIP-712 attestation against the immutable signer, accept only agreed >= quorum, unexpired bool answers for a Disputed stream, once, and move no tokens",
+           "enforce applies the ruling and the bond; expireDispute and onFailure return the bond; records are updated for both parties on every ruling",
+           "foundry.toml sets bytecode_hash = \"none\" with the pinned settings; README quotes it, says not audited, no yield or return language"
+         ]},
+        {"skill": "write-foundry-tests", "objective": STEP_TESTS, "paths": ["test/**"]},
+        {"skill": "adversarial-review"},
+        {"skill": "frontend-for-contract", "objective": STEP_SITE}
+      ]
+    },
+    "permissions": {"github": True, "ipfs": "weir", "onchain": {"kind": "evm_project", "chainId": 4663}}
+  }
+}
+s = json.dumps(wf, separators=(",", ":"))
+crit = sum(len(c) for c in wf["input"]["draft"]["steps"][0]["acceptanceCriteria"])
+print("request", len(REQUEST), "context", len(CONTEXT), "objective", len(OBJ), "sum", len(REQUEST)+len(CONTEXT)+len(OBJ))
+print("step contract", len(STEP_CONTRACT), "criteria", crit, "rendered step1 ~", len(OBJ)+len(STEP_CONTRACT)+crit, "| tests", len(STEP_TESTS), "site", len(STEP_SITE), "| body bytes", len(s.encode()))
+json.dump(wf, open(sys.argv[1], "w"), indent=2); print("wrote", sys.argv[1])

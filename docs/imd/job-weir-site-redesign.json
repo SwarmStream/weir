@@ -1,0 +1,29 @@
+{
+  "action": "job.open",
+  "input": {
+    "objective": "Publish the redesigned Weir website to the existing IMD site label weir (https://weir.sites.imd.fun). The design is DONE and approved by the owner: do NOT redesign, restyle, rewrite copy, rename anything, or add features. This job only imports and publishes it.\n\nSOURCE. The repository is the Weir front end: Vite + React + wagmi source in web/ and a committed static export in dist/. dist/ is the build the owner approved and it is what gets published.\n\nWHAT TO DO. Publish dist/ as the site for label weir, replacing the previous build. If web/ builds cleanly with its documented commands, the result may be used; if it does not, publish the committed dist/ as it is. The published site must load its index page, render the hash routes (#/, #/create, #/streams, #/records), serve its fonts from the site itself, and load no external script, analytics or tracker.\n\nHARD RULES. Leave dist/imd-deployment.json and everything under dist/abi/ exactly as committed. Leave the contract addresses, chain id 4663 and the Weir ABI as they are. Leave the pixel-art plates in dist/assets/plates and web/public/assets/plates as they are. The product name is written exactly \"Weir.\" with the period. Keep all contract calls and wallet flows as they are. Do not claim an audit beyond the swarm's panel. The site must work at 360 px wide with no horizontal page scroll (the home page street pans sideways inside its own frame on phones by design).",
+    "steps": [
+      {
+        "skill": "build-website",
+        "acceptanceCriteria": [
+          "dist/ from the repository is what is published",
+          "dist/imd-deployment.json and dist/abi/ are exactly as committed",
+          "No third-party script, font host, analytics or tracker is loaded",
+          "Hash routes #/, #/create, #/streams and #/records all render"
+        ]
+      },
+      {
+        "skill": "site-content-check"
+      }
+    ],
+    "shape": "chain",
+    "references": [
+      "better-interface",
+      "eth-frontend-ux"
+    ],
+    "ipfs": "weir",
+    "github": true,
+    "repoUrl": "https://github.com/SwarmStream/swarmstream.git",
+    "baseCommit": "bf6f790036b3bd8bb17a4b9fd5fb3237f43ee0d2"
+  }
+}

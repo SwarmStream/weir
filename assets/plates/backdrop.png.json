@@ -1,0 +1,11 @@
+{
+  "prompt": "Use the provided crop as the approved visual reference and recreate it as a clean production asset at the target aspect ratio. This is a designed illustration plate. Output the same drawing, same style, same line weight and shading. Preserve silhouette, composition, perspective, palette (#f8f8f8, #56c7f8, #0a0b11), lighting, material, and texture exactly. Remove every piece of UI text, label, caption, button, and interface chrome that is not part of the artwork itself. Remove letterboxing, borders, card corners, drop shadows, and any layout background that the page will draw in code. Do not add objects. Do not change the concept. Do not restyle. The artwork fills the whole frame edge to edge at the same scale as the reference; no margins, no border, no background band. Region: painted pixel backdrop: sky-blue sky with white pixel clouds, distant blue city silhouette, green pixel trees and shrubs, two black street lamps, stone pavement strip at the bottom; the three cutaway buildings and the door building are NOT part of this plate.\n\nFRAMING: render the whole scene as a WIDE horizontal band (about 3.3:1) centred vertically in the frame, so the top 27% and bottom 27% of the image are plain flat sky-blue (#56c7f8) with nothing in them, and the band in the middle holds, from top to bottom: a little plain sky with two white pixel clouds, the distant blue city silhouette, the green pixel trees and shrubs with the two black street lamps, and the stone pavement strip at the band's bottom edge. No buildings. Crisp hard-edged pixel art, no anti-aliasing, 16-colour palette, opaque.",
+  "createdAt": "2026-10-15T01:58:04.270Z",
+  "tool": "impeccable generate-image",
+  "model": "gpt-image-2.5-flare",
+  "background": "opaque",
+  "outputFormat": "png",
+  "refs": [
+    ".impeccable/build/crops/backdrop.png"
+  ]
+}
