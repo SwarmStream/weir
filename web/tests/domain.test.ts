@@ -90,7 +90,8 @@ test("IMD stream allowance combines the bond and caller fee", () => {
   assert.deepEqual(disputeAllowances(imd, imd, 20n, 5n, 0n), [
     { token: imd, amount: 25n, kind: "bond and oracle fee" },
   ]);
-  assert.equal(disputeAllowances(imd, imd, 20n, 5n, 5n)[0].amount, 20n);
+  // The fund can be consumed by ordering, so the whole fee is approved even when the fund covers it.
+  assert.equal(disputeAllowances(imd, imd, 20n, 5n, 5n)[0].amount, 25n);
   assert.deepEqual(
     disputeAllowances(client, imd, 20n, 5n, 0n).map((x) => x.amount),
     [20n, 5n],

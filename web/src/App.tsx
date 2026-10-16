@@ -157,6 +157,12 @@ export function App() {
             Public RPC reads refresh automatically. Transaction signing stays in
             your wallet. No USD price source is configured.
           </p>
+          <p className="muted">
+            For agents: <a href="./llms.txt">llms.txt</a> ·{" "}
+            <a href="./agent.json">agent.json</a> ·{" "}
+            <a href="./skill.md">skill.md</a> · npm <code>weir-agent</code>{" "}
+            (SDK and MCP server)
+          </p>
         </details>
       </footer>
     </>
